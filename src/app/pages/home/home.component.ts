@@ -3,11 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   // ng g c home: ng genrate component home
   selector: 'app-home',
-  template: `
-    <p>
-      home works!
-    </p>
-  `,
+  templateUrl: './home.component.html',
   styles: [
   ]
 })
