@@ -1,3 +1,38 @@
-<div>
-  <h1> Hello! </h1>
-</div>
+<!-- 
+  Entête de la zone procuits composée de 
+    A. à Ga: un btn pr changer l'ordre de la liste des procduits
+    B. à Dr: un btn pr chnager le nbre de produits afficher
+-->
+<!-- 
+  mb-4: set margin bottom to 4 px
+ -->
+
+<mat-card class="mb-4">
+  <div class="flex justify-between">
+    <!-- A [1;4]-->
+    <div>
+      <!--
+        A.1
+        button mat-button: Déclare un btn de propriété 'mat-button'
+        [matMenuTriggerFor]: propriété reliant ce button
+        ="sortByMenu": au mat-menu avec l'id 'sortByMenu'
+      -->
+      <button mat-button [matMenuTriggerFor]="sortByMenu">
+        Sort by {{ sort }}
+      </button>
+      <!-- 
+        mat-menu: menu
+        #menuName= idMeunName
+      -->
+      <mat-menu #sortByMenu="matMenu">
+        <!-- 
+        A.2
+        '(click)': OnClick déclanche la fn 'onSortUpdated'
+        prenant en paraètre un string de valeur des ou asc
+      -->
+        <button (click)="onSortUpdated('desc')" mat-menu-item>desc</button>
+        <button (click)="onSortUpdated('asc')" mat-menu-item>asc</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-card>
