@@ -13,8 +13,11 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ProductsHeaderComponent implements OnInit {
   // A.3
-  // Déclaration de la var pr le menu sorting et initiation
+  // Déclaration de la var pr le menu sorting et initialisation à 'desc'
   sort = "desc";
+  // B.3
+  // Déclaration de la var pr le menu count et initialisation à 12
+  itemsShowCount = 12;
   constructor() {}
 
   ngOnInit(): void {}
@@ -24,5 +27,11 @@ export class ProductsHeaderComponent implements OnInit {
   onSortUpdated(newSort: string): void {
     this.sort = newSort;
     console.log(newSort);
+  }
+  // A.4
+  // Déclaration de la fn pr changer la valeur de variable 'itemsShowCount'
+  onItemsUpdated(count: number): void {
+    this.itemsShowCount = count;
+    console.log(count);
   }
 }

@@ -19,20 +19,50 @@
       -->
       <button mat-button [matMenuTriggerFor]="sortByMenu">
         Sort by {{ sort }}
+        <mat-icon>expand_more</mat-icon>
       </button>
       <!-- 
-        mat-menu: menu
-        #menuName= idMeunName
+          mat-menu: Nom du mat-menu = 'matMenu'
+          #sortByMenu: id du mat-menu = 'sortByMenu'
       -->
       <mat-menu #sortByMenu="matMenu">
         <!-- 
-        A.2
-        '(click)': OnClick déclanche la fn 'onSortUpdated'
-        prenant en paraètre un string de valeur des ou asc
+          A.2
+          '(click)': OnClick déclanche la fn 'onSortUpdated'
+          prenant en paramètre un string de valeur des ou asc
       -->
         <button (click)="onSortUpdated('desc')" mat-menu-item>desc</button>
         <button (click)="onSortUpdated('asc')" mat-menu-item>asc</button>
       </mat-menu>
+    </div>
+    <!-- B [1;4]-->
+    <div class="flex items-center">
+      <div>
+        <!--
+          B.1
+          button mat-button: Déclare un btn de propriété 'mat-button'
+          [matMenuTriggerFor]: propriété reliant ce button
+          ="menu": au mat-menu avec l'id 'menu'
+        -->
+        <button mat-button [matMenuTriggerFor]="menu">
+          Show {{ itemsShowCount }}
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <!-- 
+        mat-menu: Nom du mat-menu = 'matMenu'
+        #menu: id du mat-menu = 'menu'
+        -->
+        <mat-menu #menu="matMenu">
+          <!-- 
+            B.2
+            '(click)': OnClick déclanche la fn 'onItemsUpdated'
+            prenant en paramètre un number de valeur 12, 24 ou 36
+          -->
+          <button (click)="onItemsUpdated(12)" mat-menu-item>12</button>
+          <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
+          <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
+        </mat-menu>
+      </div>
     </div>
   </div>
 </mat-card>
