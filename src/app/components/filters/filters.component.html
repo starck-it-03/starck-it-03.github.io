@@ -1,0 +1,26 @@
+<!-- 
+    E.3 
+    mat-expansion-panel: un btn qui en affiche le contenu
+    *ngIf: si categories existe alors affiche le btn
+    mat-expansion-panel-header: en-tête de liste
+    mat-panel-title: titre 
+    mat-selection-list: contenu détaillé de la liste
+    mat-list-option: options de cette liste
+    [multiple]="false": interdit la multi sélection 
+    [value]="category": prendre les valeurs dans l'array 'category'
+    checkboxPosition
+-->
+<mat-expansion-panel *ngIf="categories">
+  <mat-expansion-panel-header>
+    <mat-panel-title>CATEGORIES</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-selection-list [multiple]="true">
+    <mat-list-option
+      *ngFor="let category of categories"
+      [value]="category"
+      checkboxPosition="before"
+    >
+      <button>{{ category }}</button>
+    </mat-list-option>
+  </mat-selection-list>
+</mat-expansion-panel>
