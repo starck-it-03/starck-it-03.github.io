@@ -5,7 +5,10 @@
   <mat-drawer mode="side" opened class="p-6">
     <!-- E.4 -->
     <!-- Ajout du nouveau composant -->
-    <app-filters></app-filters>
+
+    <!-- F.5 -->
+    <!-- Linked fn call 'showCategory' -->
+    <app-filters (showCategory)="onShowCategory($event)"></app-filters>
   </mat-drawer>
   <mat-drawer-content class="p-6">
     <!-- D.7  -->
@@ -15,5 +18,7 @@
     <!-- D.2 -->
     <!-- Ajout de l'affichage de la var 'cols' dans la homepage via {{}} -->
     {{ cols }}
+
+    {{ category }}
   </mat-drawer-content>
 </mat-drawer-container>
