@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+// D.4
+// Import nécessaire à l'utilisation d'output via ajout 'Output'(e) les {}
 
 @Component({
   selector: "app-products-header",
@@ -12,12 +14,18 @@ import { Component, OnInit } from "@angular/core";
   styles: [],
 })
 export class ProductsHeaderComponent implements OnInit {
+  // D.5
+  // Déclaration de l'output 'columnsCountChange'(TBC)
+  @Output() columnsCountChange = new EventEmitter<number>();
   // A.3
   // Déclaration de la var pr le menu sorting et initialisation à 'desc'
   sort = "desc";
   // B.3
-  // Déclaration de la var pr le menu count et initialisation à 12
+  // Déclaration de la var pr le menu rows qty items et initialisation à 12
   itemsShowCount = 12;
+  // C.2
+  // Déclaration de la var pr le menu column qty items et initialisation à 3
+  colsNum = 3;
   constructor() {}
 
   ngOnInit(): void {}
@@ -28,10 +36,16 @@ export class ProductsHeaderComponent implements OnInit {
     this.sort = newSort;
     console.log(newSort);
   }
-  // A.4
+  // B.4
   // Déclaration de la fn pr changer la valeur de variable 'itemsShowCount'
   onItemsUpdated(count: number): void {
     this.itemsShowCount = count;
     console.log(count);
+  }
+  // D.6
+  // Déclaration de la fn 'onColumnsUpdated' pr changer la valeur de l'output 'columnsCountChange'
+  onColumnsUpdated(colsNum: number): void {
+    this.columnsCountChange.emit(colsNum);
+    console.log('Print from products-header-component (before output: '+colsNum);
   }
 }
