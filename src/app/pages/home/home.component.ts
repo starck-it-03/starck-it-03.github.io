@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   // F.6
   // Déclaration de la fn 'onShowCategory' pr MaJ de la var 'category'
   onShowCategory(newCategory: string): void {
-    this.category = newCategory;
+    this.category = "Active filter: " + newCategory;
     console.log("Print from home.component.ts (post output): " + this.category);
   }
 }
