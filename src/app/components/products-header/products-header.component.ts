@@ -47,7 +47,7 @@ export class ProductsHeaderComponent implements OnInit {
   onColumnsUpdated(colsNum: number): void {
     this.columnsCountChange.emit(colsNum);
     console.log(
-      "Print from products-header-component (before output: " + colsNum
+      "Print from products-header.component.ts (before output): " + colsNum
     );
   }
 }
