@@ -46,6 +46,8 @@ export class ProductsHeaderComponent implements OnInit {
   // Déclaration de la fn 'onColumnsUpdated' pr changer la valeur de l'output 'columnsCountChange'
   onColumnsUpdated(colsNum: number): void {
     this.columnsCountChange.emit(colsNum);
-    console.log('Print from products-header-component (before output: '+colsNum);
+    console.log(
+      "Print from products-header-component (before output: " + colsNum
+    );
   }
 }

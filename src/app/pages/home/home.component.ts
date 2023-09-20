@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   // D.3
-  // Déclaration de la fn 'onColumnsCountChang' pr MaJ de la var 'cols' 
+  // Déclaration de la fn 'onColumnsCountChange' pr MaJ de la var 'cols' 
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
     console.log("Print from home-component (post output): " + this.cols);
