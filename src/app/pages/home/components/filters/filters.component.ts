@@ -26,8 +26,6 @@ export class FiltersComponent implements OnInit {
     // F.3
     // Logique à éxecuter lors de l'appel de la fn 'onShowCategory'
     this.showCategory.emit(category);
-    console.log(
-      "Print from filters.component.ts (before output): " + category
-    );
+    console.log("Print from filters.component.ts (before output): " + category);
   }
 }
