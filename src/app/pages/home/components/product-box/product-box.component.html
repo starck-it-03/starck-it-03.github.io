@@ -2,10 +2,17 @@
 <!-- Création d'un nouveau composant spécifique aux fiches produit -->
 <!-- truncate: permet limiter un texte trop long -->
 <!-- hover:whitespace-normal permet un affichage du texte complet-->
-<mat-card class="text-center">
+
+<!-- G.9 -->
+<!-- [ngClass]="{ 'text-center': !fullWidthMode }" -->
+<!-- Ajouter la class "text-center" uniquement si pas en fullWidthMode -->
+<!-- [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }" -->
+<!-- Ajouter la class "h-200px" uniquement en fullWidthMode, sinon appliquer class "h-[360px]" -->
+<mat-card [ngClass]="{ 'text-center': !fullWidthMode }">
   <div>
     <img
       class="mb-1 mx-auto h-[200px]"
+      [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }"
       src="https://via.placeholder.com/150"
       alt="Tst string description"
     />
