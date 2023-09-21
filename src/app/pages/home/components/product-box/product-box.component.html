@@ -6,21 +6,35 @@
 <!-- G.9 -->
 <!-- [ngClass]="{ 'text-center': !fullWidthMode }" -->
 <!-- Ajouter la class "text-center" uniquement si pas en fullWidthMode -->
+
 <!-- [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }" -->
-<!-- Ajouter la class "h-200px" uniquement en fullWidthMode, sinon appliquer class "h-[360px]" -->
+<!-- Ajouter la class "h-200px" uniquement si pas en fullWidthMode, sinon appliquer class "h-[360px]" -->
+
+<!-- [ngClass]="{flex: fullWidthMode}" -->
+<!-- Ajouter class flex pr afficher le texte à droite de l'image uniquement en fullWidthMode -->
+
+<!-- [ngClass]="{'px-8 flex flex-col justify-between':fullWidthMode}" -->
+<!-- Ajouter class lex flex-col et justify-between uniquement en fullWidthMode -->
+
+<!-- *ngIf="fullWidthMode" -->
+<!-- Afficher ce paragraphe uniquement en fullWidthMode -->
+
 <mat-card [ngClass]="{ 'text-center': !fullWidthMode }">
-  <div>
+  <div [ngClass]="{ flex: fullWidthMode }">
     <img
       class="mb-1 mx-auto h-[200px]"
       [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }"
       src="https://via.placeholder.com/150"
       alt="Tst string description"
     />
-    <div class="w-full">
+    <div
+      class="w-full"
+      [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
+    >
       <div>
         <h5>Type du produit</h5>
         <p class="truncate hover:whitespace-normal">Nom du produit</p>
-        <p>Description du produit</p>
+        <p *ngIf="fullWidthMode">Description du produit</p>
       </div>
       <div class="flex justify-between">
         <span class="text-red-400">{{ "150" | currency : "EUR" }}</span>
