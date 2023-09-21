@@ -15,10 +15,20 @@
     <!-- Ajout de l'event 'columsCountChange' (TBC) -->
     <app-products-header (columnsCountChange)="onColumnsCountChange($event)">
     </app-products-header>
+
     <!-- D.2 -->
     <!-- Ajout de l'affichage de la var 'cols' dans la homepage via {{}} -->
-    <span> Columns number: {{ cols }}</span>
-    <br />
-    <span>{{ category }}</span>
+    <!-- <span> Columns number: {{ cols }}</span> -->
+    <!-- <br /> -->
+    <!-- <span>{{ category }}</span> -->
+
+    <!-- G.1  -->
+    <!-- Ajout html propre aux cartes produit-->
+    <!-- La propriété cols est fixée de façon dynamique selon la valeur courrante de la var 'cols' -->
+    <!-- La propriété rowHeight est fixée de façon dynamique selon la valeur courrante de la var 'rowHeight' -->
+
+    <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+      <mat-grid-tile> <app-product-box> </app-product-box> </mat-grid-tile
+    ></mat-grid-list>
   </mat-drawer-content>
 </mat-drawer-container>

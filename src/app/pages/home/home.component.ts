@@ -1,5 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 
+// G.4
+// Déclaration d'un objet pr le mapping des hauteurs de carte selon le nbr d'objet choisi par rangée
+// Type = objet via {}
+// Première valeur: le nombre de colonnes affichées par rangée
+// Clef via [] et number
+// Deuxième valeur: la hauteur à appliquer
+// Valeur et number
+const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
+
 @Component({
   // ng g c home: ng genrate component home
   selector: "app-home",
@@ -9,6 +18,11 @@ export class HomeComponent implements OnInit {
   // D.1
   // Déclaration de la var 'cols' dans le composant principale et initialisation à 3
   cols = 3;
+
+  // G.5
+  // Déclaration d'une variable pr la hauteur des cartes
+  // Dont la valeur sera dynamique en fonction du nombre de colonnes affcihées par rangée
+  rowHeight = ROWS_HEIGHT[this.cols];
 
   // F.7
   // Déclaration de la var 'category' dans le cpnt principal et non-initialisation (=> undefined obligatoire)
@@ -22,13 +36,20 @@ export class HomeComponent implements OnInit {
   // Déclaration de la fn 'onColumnsCountChange' pr MaJ de la var 'cols'
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
-    console.log("Print from home.component.ts (post output): " + this.cols);
+    console.log("this.cols (@home.component.ts): " + this.cols);
+
+    // G.6
+    // Ajout de la mise à jour de la hauteur des cartes
+    this.rowHeight = ROWS_HEIGHT[this.cols];
+    console.log(
+      "ROWS_HEIGHT[this.cols] (@home.component.ts): " + ROWS_HEIGHT[this.cols]
+    );
   }
 
   // F.6
   // Déclaration de la fn 'onShowCategory' pr MaJ de la var 'category'
   onShowCategory(newCategory: string): void {
-    this.category = "Active filter: " + newCategory;
-    console.log("Print from home.component.ts (post output): " + this.category);
+    this.category = newCategory;
+    console.log("this.category (@home.component.ts): " + this.category);
   }
 }

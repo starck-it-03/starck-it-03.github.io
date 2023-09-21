@@ -1,0 +1,26 @@
+<!-- G.3 -->
+<!-- Création d'un nouveau composant spécifique aux fiches produit -->
+<!-- truncate: permet limiter un texte trop long -->
+<!-- hover:whitespace-normal permet un affichage du texte complet-->
+<mat-card class="text-center">
+  <div>
+    <img
+      class="mb-1 mx-auto h-[200px]"
+      src="https://via.placeholder.com/150"
+      alt="Tst string description"
+    />
+    <div class="w-full">
+      <div>
+        <h5>Type du produit</h5>
+        <p class="truncate hover:whitespace-normal">Nom du produit</p>
+        <p>Description du produit</p>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-red-400">{{ "150" | currency : "EUR" }}</span>
+        <button>
+          <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
