@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Cart } from "src/app/models/cart.model";
+import { Cart, CartItem } from "src/app/models/cart.model";
 
 @Component({
   selector: "app-cart",
@@ -7,9 +7,34 @@ import { Cart } from "src/app/models/cart.model";
 })
 export class CartComponent implements OnInit {
   //Dummy object awaiting dynamic cart works
-  cart: Cart = { items: [] };
-  
+  cart: Cart = {
+    items: [
+      {
+        product: "https://via.placeholder.com/150",
+        name: "snickers",
+        price: 150,
+        quantity: 1,
+        id: 1,
+      },
+    ],
+  };
+
+  //Needed property
+  dataSource: Array<CartItem> = [];
+
+  //Needed property
+  displayedColumns: Array<string> = [
+    "product",
+    "name",
+    "price",
+    "quantity",
+    "total",
+    "action",
+  ];
   constructor() {}
 
-  ngOnInit(): void {}
+  //Customed initialisation
+  ngOnInit(): void {
+    this.dataSource = this.cart.items;
+  }
 }
