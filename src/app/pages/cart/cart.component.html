@@ -1,1 +1,9 @@
-<p>Hello world!</p>
+<!-- *ngIf="cart.items.length"-->
+<!-- N'afficher que s'il y a au minimum un article dans le panier -->
+<mat-card *ngIf="cart.items.length"> </mat-card>
+
+<!-- Sinon, afficher un message explicite -->
+<mat-card *ngIf="!cart.items.length">
+  <p>Your cart is empty</p>
+  <button mat-raised-button routerLink="/home">Start shopping</button>
+</mat-card>
