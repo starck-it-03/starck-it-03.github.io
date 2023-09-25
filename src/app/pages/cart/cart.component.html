@@ -1,9 +1,87 @@
 <!-- *ngIf="cart.items.length"-->
 <!-- N'afficher que s'il y a au minimum un article dans le panier -->
-<mat-card *ngIf="cart.items.length"> </mat-card>
+<!-- class="max-w-7xl mx-auto" -->
+<!-- largeur max comme pour la home page-->
+<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+    <!-- matColumnDef = le nom de la colonne à afficher -->
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef>Produit</th>
+      <td mat-cell *matCellDef="let element">
+        <img src="{{ element.product }}" alt="product" class="w-[100px] my-5" />
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-raised-button routerLink="/home">Continuer achats</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- class="truncate max-w-xs" raccourcirat et ajoutera des ... si trop large-->
+        <span class="truncate max-w-xs block">{{ element.name }}</span>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Prix</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- Pas besoin du paragraphe car on ne veut pas appliquer de style  -->
+        {{ element.price | currency : "EUR" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantité</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button><mat-icon>remove</mat-icon></button>
+        <span>{{ element.quantity }}</span>
+        <button mat-icon-button><mat-icon>add</mat-icon></button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.quantity * element.price | currency : "EUR" }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <span class="font-bold py-5 block">
+          {{ getTotal(cart.items) | currency : "EUR" }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        <button mat-raised-button color="warn" class="float-right">
+          Vider panier
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab color="warn" class="float-right">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-raised-button color="primary" class="float-right">
+          Clôturer achats
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- https://material.angular.io/components/table/overview#2-define-the-column-templates -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+</mat-card>
 
 <!-- Sinon, afficher un message explicite -->
 <mat-card *ngIf="!cart.items.length">
-  <p>Your cart is empty</p>
-  <button mat-raised-button routerLink="/home">Start shopping</button>
+  <p>Votre panier est vide</p>
+  <button mat-raised-button routerLink="/home">Démarrer achats</button>
 </mat-card>
