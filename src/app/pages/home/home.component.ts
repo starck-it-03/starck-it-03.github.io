@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Product } from "src/app/models/product.models";
+import { CartService } from "src/app/services/cart.service";
 
 // G.4
 // Déclaration d'un objet pr le mapping des hauteurs de carte selon le nbr d'objet choisi par rangée
@@ -10,7 +12,7 @@ import { Component, OnInit } from "@angular/core";
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
 @Component({
-  // ng g c home: ng genrate component home
+  // ng g c home: ng generate component home
   selector: "app-home",
   templateUrl: "./home.component.html",
 })
@@ -28,7 +30,8 @@ export class HomeComponent implements OnInit {
   // Déclaration de la var 'category' dans le cpnt principal et non-initialisation (=> undefined obligatoire)
   category: string | undefined;
 
-  constructor() {}
+  // Injection de la source qui vient d'être créée
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {}
 
@@ -51,5 +54,20 @@ export class HomeComponent implements OnInit {
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
     console.log("this.category (@home.component.ts): " + this.category);
+  }
+
+  // H.8: Nouvelle méthode onAddToCart
+  // Le paramètre est product
+  // Du type Product interface que l'on vient de créer et d'importer
+  onAddToCart(product: Product): void {
+    this.cartService.addToCart({
+      // Le nom des attributs est selon l'API qui va être utilisée 
+      // => Mapping à prendre ainsi
+      product: product.image,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      id: product.id,
+    });
   }
 }
