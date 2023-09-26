@@ -4,9 +4,17 @@
 /* npm install -D tailwindcss postcss autoprefixer  */
 /* npx tailwindcss init                             */
 /* https://tailwindcss.com/docs/guides/angular*/
+
+/* 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
+*/
+
+/* https://stackoverflow.com/questions/71384038/many-tailwind-css-classes-doesn%C2%B4t-work-on-my-angular-12-project */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 html,
 body {
