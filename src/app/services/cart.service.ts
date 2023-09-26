@@ -7,7 +7,7 @@ import { Cart, CartItem } from "../models/cart.model";
   providedIn: "root",
 })
 
-// H.9: Définition du nouveau service 'CartService'
+// H.8: Définition du nouveau service 'CartService'
 // ng g s cart: ng generate service cart
 export class CartService {
   // Définition d'un panier vide dans un premier temps
@@ -41,6 +41,6 @@ export class CartService {
 
     this._snackBar.open("1 article ajouté au panier", "Ok", { duration: 3000 });
 
-    console.log(this.cart.value);
+    //console.log(this.cart.value);
   }
 }

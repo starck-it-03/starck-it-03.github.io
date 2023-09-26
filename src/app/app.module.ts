@@ -55,7 +55,7 @@ import { CartService } from "./services/cart.service";
     MatBadgeModule,
     MatSnackBarModule,
   ],
-  // H.10: Import non automatisé => Le faire à la main
+  // H.9: Import non automatisé => Le faire à la main
   providers: [CartService],
   bootstrap: [AppComponent],
 })

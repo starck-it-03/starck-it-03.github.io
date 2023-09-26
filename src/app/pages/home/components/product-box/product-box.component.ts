@@ -13,8 +13,8 @@ export class ProductBoxComponent implements OnInit {
   // Initialisation à false puisque page se charge en 3 coln par row
   @Input() fullWidthMode = false;
 
-  // H.3: Temp dummy data in order to emit it to the subscribed 
-  // NB: Le undefined est nécessaire pdt le temps d'attente du fetch à venir
+  // H.4: Temp dummy data in order to emit it to the subscribed 
+  // NB: Le undefined est nécessaire pdt le temps d'attente du fetch à venir avec l'API
   product: Product | undefined = {
     id: 1,
     title: "Snickers",
@@ -24,14 +24,14 @@ export class ProductBoxComponent implements OnInit {
     image: "https://via.placeholder.com/150",
   };
 
-  // H.5: Event in order to emit this product entre elements enfant et parent
+  // H.5: Event afin d'émettre qlque chose entre elements enfant et parent
   @Output() addToCart = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // H.2: Nouvelle méthode pr ajouter un article dans le panier
+  // H.2: Nouvelle méthode 'onAddToCart()' pr l'ajout d'un produit dans le panier
   onAddToCart(): void {
     // H.6: Emission à proprement parler
     this.addToCart.emit(this.product);

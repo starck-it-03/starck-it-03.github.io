@@ -1,4 +1,4 @@
-// H.4: Nouvelle interface nécessaire
+// H.3: Nouvelle interface nécessaire
 export interface Product {
   id: number;
   title: string;

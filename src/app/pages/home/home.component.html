@@ -31,7 +31,7 @@
       <mat-grid-tile>
         <!-- G.8 -->
         <!-- [fullWidthMode]="cols === 1" applique propriété fullWidthMode uniquement si la valeur courrant de var 'cols' est égale à 1 -->
-        <!-- H.7: Ajout de l'event sur le boutton en question-->
+        <!-- H.7: Ajout de l'event sur button pour catcher la méthode d'emit créée à l'étape H-1 -->
         <app-product-box
           (addToCart)="onAddToCart($event)"
           class="w-full"
