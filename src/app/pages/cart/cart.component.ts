@@ -52,10 +52,25 @@ export class CartComponent implements OnInit {
   //Customed initialisation
   ngOnInit(): void {
     this.dataSource = this.cart.items;
+
+    // J.1: Subscription au nouveau panier créé
+    this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
+
+    // J.1*: Bonus exercice
+    // Stocker ce panier dynamique dans la mémoire locale du browser
+    // afin qu'en cas de refresh, l'état du panier ne soit pas perdu
   }
 
   // I.12: Simplification via appel de la fonction déplacée vers cart.service.ts
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
+  }
+
+  // J.2: Implementation du btn ClearAll pr vider tout le panier en une fois
+  onClearCart(): void {
+    this.cartService.clearCart();
   }
 }

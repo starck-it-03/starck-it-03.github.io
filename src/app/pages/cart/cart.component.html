@@ -57,7 +57,13 @@
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>
-        <button mat-raised-button color="warn" class="float-right">
+        <!-- J.4: Appelle de la Fn au click du Btn -->
+        <button
+          (click)="onClearCart()"
+          mat-raised-button
+          color="warn"
+          class="float-right"
+        >
           Vider panier
         </button>
       </th>

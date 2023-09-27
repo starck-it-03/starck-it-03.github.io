@@ -51,4 +51,10 @@ export class CartService {
       .map((item) => item.price * item.quantity)
       .reduce((prev, current) => prev + current, 0);
   }
+
+  // J.3: Implementation fn clearCart()
+  clearCart(): void {
+    this.cart.next({ items: [] });
+    this._snackBar.open("Panier entièrement vidé.", "Ok", { duration: 3000 });
+  }
 }
