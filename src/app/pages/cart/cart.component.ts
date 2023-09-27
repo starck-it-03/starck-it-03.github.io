@@ -74,8 +74,13 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  // K.1: Implementation du btn Close pr supprimier un seul ligne du panier
+  // K.1: Implementation du btn Close pr supprimer une seul ligne du panier
   onRemoveFromCart(item: CartItem): void {
     this.cartService.removeFromCart(item);
+  }
+
+  // L.1: Implementation du btn + pr ajouter un même article déjà dans le panier
+  onAddQuantity(item: CartItem): void {
+    this.cartService.addToCart(item);
   }
 }
