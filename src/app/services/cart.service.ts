@@ -60,15 +60,51 @@ export class CartService {
   }
 
   // K.2: Implementation fn removeFromCart(item: CartItem)
-  removeFromCart(item: CartItem): void {
+  // M.3: Ajout d'un flag 'update' pr ne pas lancer deux fois le snackbar
+  // M.4: Ajout d'un retour à la signature de la fn
+  removeFromCart(item: CartItem, update = true): Array<CartItem> {
     // Plusieurs façons de faire...
     // Ici on filtre tout le reste du panier dans un constante
     const filteredItems = this.cart.value.items.filter(
       (_item) => _item.id !== item.id
     );
-    // On alloue au panier cette valeur calculée
-    this.cart.next({ items: filteredItems });
+    if (update) {
+      // On alloue au panier cette valeur calculée
+      this.cart.next({ items: filteredItems });
 
-    this._snackBar.open("Produit supprimé.", "Ok", { duration: 3000 });
+      this._snackBar.open("Produit supprimé.", "Ok", { duration: 3000 });
+    }
+    // M.5: Ajout d'un retour à cette fn
+    return filteredItems;
+  }
+
+  // M.2: Implementation fn removeQuantity(item: CartItem)
+  removeQuantity(item: CartItem): void {
+    // var intermédiaire
+    let itemForRemoval: CartItem | undefined;
+
+    // var de tri (à revoir car méthode semble compliquée)
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if (_item.id === item.id) {
+        _item.quantity--; //Equivalent à _item.quantity-=1;
+
+        if (_item.quantity === 0) {
+          itemForRemoval = _item;
+        }
+      }
+
+      return _item;
+    });
+
+    // S'il existe un item à supprimer, alors appeler la fn de delete
+    if (itemForRemoval) {
+      // On ajoute un flag 'update' à fn 'removeFromcart' pr ne pas lancer deux fois le snackbar
+      filteredItems = this.removeFromCart(itemForRemoval, false);
+    }
+
+    this.cart.next({ items: filteredItems });
+    this._snackBar.open("1 article retiré du panier.", "Ok", {
+      duration: 3000,
+    });
   }
 }

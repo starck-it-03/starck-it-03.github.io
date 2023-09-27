@@ -36,7 +36,10 @@
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef>Quantité</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button><mat-icon>remove</mat-icon></button>
+        <!-- M.6: Ajout du on click event au btn pr appelle de la Fn -->
+        <button (click)="onRemoveQuantity(element)" mat-icon-button>
+          <mat-icon>remove</mat-icon>
+        </button>
         <span>{{ element.quantity }}</span>
 
         <!-- L.2: Ajout du on click event au btn pr appelle de la Fn -->

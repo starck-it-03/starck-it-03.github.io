@@ -83,4 +83,9 @@ export class CartComponent implements OnInit {
   onAddQuantity(item: CartItem): void {
     this.cartService.addToCart(item);
   }
+
+  // M.1: Implementation du btn - pr retirer un même article déjà dans le panier
+  onRemoveQuantity(item: CartItem): void {
+    this.cartService.removeQuantity(item)
+  }
 }
