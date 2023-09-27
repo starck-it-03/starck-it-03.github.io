@@ -28,11 +28,14 @@
     <!-- La propriété rowHeight est fixée de façon dynamique selon la valeur courrante de la var 'rowHeight' -->
 
     <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
-      <mat-grid-tile>
-        <!-- G.8 -->
+      <!-- N.10 Implementaion du loop via un *ngFor -->
+      <mat-grid-tile *ngFor="let product of products">
+        <!-- G.8: -->
         <!-- [fullWidthMode]="cols === 1" applique propriété fullWidthMode uniquement si la valeur courrant de var 'cols' est égale à 1 -->
         <!-- H.7: Ajout de l'event sur button pour catcher la méthode d'emit créée à l'étape H-1 -->
+        <!-- N.11: Ajout du [product]='product'-->
         <app-product-box
+          [product]="product"
           (addToCart)="onAddToCart($event)"
           class="w-full"
           [fullWidthMode]="cols === 1"

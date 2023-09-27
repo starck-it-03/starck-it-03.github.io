@@ -100,7 +100,7 @@
 </mat-card>
 
 <!-- Sinon, afficher un message explicite -->
-<mat-card *ngIf="!cart.items.length">
+<mat-card class="max-w-7xl mx-auto" *ngIf="!cart.items.length">
   <p>Votre panier est vide</p>
   <button mat-raised-button routerLink="/home">Démarrer achats</button>
 </mat-card>

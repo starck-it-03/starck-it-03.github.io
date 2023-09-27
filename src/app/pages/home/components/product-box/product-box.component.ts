@@ -13,16 +13,18 @@ export class ProductBoxComponent implements OnInit {
   // Initialisation à false puisque page se charge en 3 coln par row
   @Input() fullWidthMode = false;
 
-  // H.4: Temp dummy data in order to emit it to the subscribed 
+  // H.4: Temp dummy data in order to emit it to the subscribed
   // NB: Le undefined est nécessaire pdt le temps d'attente du fetch à venir avec l'API
-  product: Product | undefined = {
-    id: 1,
-    title: "Snickers",
-    price: 150,
-    category: "shoes",
-    description: "Description",
-    image: "https://via.placeholder.com/150",
-  };
+  // N.12: suppression du dummy data jusqu'alors utilisé et ajout d'un input
+  @Input() product: Product | undefined;
+  // = {
+  //   id: 1,
+  //   title: "Snickers",
+  //   price: 150,
+  //   category: 'shoes',
+  //   description:'Description',
+  //   image: 'https://via.placeholder.com/150'
+  // }
 
   // H.5: Event afin d'émettre qlque chose entre elements enfant et parent
   @Output() addToCart = new EventEmitter();

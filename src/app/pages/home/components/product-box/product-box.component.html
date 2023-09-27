@@ -19,26 +19,31 @@
 <!-- *ngIf="fullWidthMode" -->
 <!-- Afficher ce paragraphe uniquement en fullWidthMode -->
 
-<mat-card [ngClass]="{ 'text-center': !fullWidthMode }">
+<!-- N.16: Ajout *ngIf="product", afficher uniquement dès qu'il y a un produit reçu -->
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
   <div [ngClass]="{ flex: fullWidthMode }">
+    <!-- N.15 src="https://via.placeholder.com/150" devient [src]="product.image"-->
     <img
       class="mb-1 mx-auto h-[200px]"
       [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }"
-      src="https://via.placeholder.com/150"
-      alt="Tst string description"
+      [src]="product.image"
     />
     <div
       class="w-full"
       [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
     >
       <div>
-        <h5>Type du produit</h5>
-        <p class="truncate hover:whitespace-normal">Nom du produit</p>
-        <p *ngIf="fullWidthMode">Description du produit</p>
+        <!-- N.17: Adapation dynamic des attributs retournés par API -->
+        <!-- <h5>Type du produit</h5> -->
+        <h5>{{ product.category }}</h5>
+        <!-- <p class="truncate hover:whitespace-normal">Nom du produit</p> -->
+        <p class="truncate hover:whitespace-normal">{{ product.title }}</p>
+        <p *ngIf="fullWidthMode">{{ product.description }}</p>
       </div>
       <div class="flex justify-between">
-        <span class="text-red-400">{{ "150" | currency : "EUR" }}</span>
-        
+        <!-- <span class="text-red-400">{{ "150" | currency : "EUR" }}</span> -->
+        <span class="text-red-400">{{ product.price | currency : "EUR" }}</span>
+
         <!-- H.1: Ajout d'un event click pr appeler nouvelle méthode 'onAddToCart()'-->
         <button (click)="onAddToCart()">
           <mat-icon class="text-gray-500">shopping_cart</mat-icon>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { Product } from "src/app/models/product.models";
 import { CartService } from "src/app/services/cart.service";
+import { StoreService } from "src/app/services/store.service";
 
 // G.4
 // Déclaration d'un objet pr le mapping des hauteurs de carte selon le nbr d'objet choisi par rangée
@@ -16,7 +18,9 @@ const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
   selector: "app-home",
   templateUrl: "./home.component.html",
 })
-export class HomeComponent implements OnInit {
+
+// N.13: Ajout de 'OnDestroy'
+export class HomeComponent implements OnInit, OnDestroy {
   // D.1
   // Déclaration de la var 'cols' dans le composant principale et initialisation à 3
   cols = 3;
@@ -31,9 +35,31 @@ export class HomeComponent implements OnInit {
   category: string | undefined;
 
   // H.10: Injection de la source qui vient d'être créée
-  constructor(private cartService: CartService) {}
+  // N.6: Ajout du param storeService tout juste réé
+  constructor(
+    private cartService: CartService,
+    private storeService: StoreService
+  ) {}
 
-  ngOnInit(): void {}
+  // N.7: Déclaration des var nécessaires
+  products: Array<Product> | undefined;
+  sort = "desc"; //var pr le sorting des produits à afficher
+  count = "12"; //var pr le nbre de produits à afficher
+  productsSubscription: Subscription | undefined; //var pr contenir notre subscription et la détruire ult
+
+  ngOnInit(): void {
+    // N.9: Appel de la fn à l'initialisation du cpnt
+    this.getProducts();
+  }
+
+  // N.8: Déclaration méthode getProducts
+  getProducts(): void {
+    this.productsSubscription = this.storeService
+      .getAllProducts(this.count, this.sort)
+      .subscribe((_products) => {
+        this.products = _products;
+      });
+  }
 
   // D.3
   // Déclaration de la fn 'onColumnsCountChange' pr MaJ de la var 'cols'
@@ -69,5 +95,12 @@ export class HomeComponent implements OnInit {
       quantity: 1,
       id: product.id,
     });
+  }
+
+  // N.14: Fn pr détruire la subscription ouverte et ainsi ne pas avoir de 'memory leaks'
+  ngOnDestroy(): void {
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
+    }
   }
 }
