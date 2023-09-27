@@ -18,32 +18,42 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
   <a routerLink="home"> Coffee for Warzee</a>
   <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon [matBadge]="3" matBadgeColor="warn">shopping_cart</mat-icon>
+    <!-- I.5: MàJ dynamique du badge et le cacher si panier vide via -->
+    <!-- [matBadgeHidden]="!itemsQuantity" -->
+    <mat-icon
+      [matBadge]="itemsQuantity"
+      [matBadgeHidden]="!itemsQuantity"
+      matBadgeColor="warn"
+      >shopping_cart</mat-icon
+    >
   </button>
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
-        <span class="mr-20">3 items</span>
+        <!-- I.4: MàJ dynamique du nombre d'article dans la mini carte panier -->
+        <span class="mr-20">{{ itemsQuantity }} items</span>
         <a routerLink="cart">View Cart</a>
       </div>
-      <div class="py-3">
-        <div class="flex justify-between font-light mb-2">
-          Sublime 500G x 1
-          <span class="font-bold">{{ "7.79" | currency : "EUR" }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          Chiapas 250G x 1
-          <span class="font-bold">{{ "4.99" | currency : "EUR" }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          Magnifico 250G x 1
-          <span class="font-bold">{{ "4.49" | currency : "EUR" }}</span>
+      <!-- I.6: Si panier non vide, alors en permettre l'affichage via -->
+      <!-- *ngIf="cart.items.length" -->
+      <div *ngIf="cart.items.length" class="py-3">
+        <!-- I.7: Si panier non vide, alors boucler le contenu via -->
+        <!-- *ngFor="let item of cart.items" -->
+        <div
+          *ngFor="let item of cart.items"
+          class="flex justify-between font-light mb-2"
+        >
+          <!-- I.8: MàJ dynamique des attributs à afficher sur le mini panier via {{}}-->
+          {{ item.name }} x {{ item.quantity }}
+          <span class="font-bold">{{ item.price | currency : "EUR" }}</span>
         </div>
       </div>
-      <!--  -->
       <div class="flex justify-between py-3 font-light">
         TOTAL
-        <span class="font-bold">{{ "17.27" | currency : "EUR" }}</span>
+        <!-- I.9: Mettre à jour le total du panier -->
+        <span class="font-bold">{{
+          getTotal(cart.items) | currency : "EUR"
+        }}</span>
       </div>
       <div class="pt-3 flex justify-between">
         <button class="bg-rose-600 text-white rounded-full w-9 h-9">

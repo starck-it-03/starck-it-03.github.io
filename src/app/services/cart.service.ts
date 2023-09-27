@@ -43,4 +43,12 @@ export class CartService {
 
     //console.log(this.cart.value);
   }
+
+  // I.10: Placer le code du getTotal existant dans cart.component.ts
+  // dans le Service afin de pouvoir l'utiliser à plusieurs endroits
+  getTotal(items: Array<CartItem>): number {
+    return items
+      .map((item) => item.price * item.quantity)
+      .reduce((prev, current) => prev + current, 0);
+  }
 }

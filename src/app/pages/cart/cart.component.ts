@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Cart, CartItem } from "src/app/models/cart.model";
+import { CartService } from "src/app/services/cart.service";
 
 @Component({
   selector: "app-cart",
@@ -45,17 +46,16 @@ export class CartComponent implements OnInit {
     "total",
     "action",
   ];
-  constructor() {}
+  // I.11: Appelle du service CartService pr utiliser la méthode getTotal()
+  constructor(private cartService: CartService) {}
 
   //Customed initialisation
   ngOnInit(): void {
     this.dataSource = this.cart.items;
   }
 
-  //Fonction pour calculer le total du panier
+  // I.12: Simplification via appel de la fonction déplacée vers cart.service.ts
   getTotal(items: Array<CartItem>): number {
-    return items
-      .map((item) => item.price * item.quantity)
-      .reduce((prev, current) => prev + current, 0);
+    return this.cartService.getTotal(items);
   }
 }
