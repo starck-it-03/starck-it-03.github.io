@@ -57,7 +57,7 @@
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>
-        <!-- J.4: Appelle de la Fn au click du Btn -->
+        <!-- J.4: Ajout du on click event au btn pr appelle de la Fn -->
         <button
           (click)="onClearCart()"
           mat-raised-button
@@ -68,7 +68,10 @@
         </button>
       </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-mini-fab color="warn" class="float-right">
+        <!-- K.3: Ajout du on click event au btn pr appelle de la Fn -->
+        <button 
+        (click)="onRemoveFromCart(element)"
+        mat-mini-fab color="warn" class="float-right">
           <mat-icon>close</mat-icon>
         </button>
       </td>

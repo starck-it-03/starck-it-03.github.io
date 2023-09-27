@@ -1,3 +1,4 @@
+import { _isTestEnvironment } from "@angular/cdk/platform";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BehaviorSubject } from "rxjs";
@@ -56,5 +57,18 @@ export class CartService {
   clearCart(): void {
     this.cart.next({ items: [] });
     this._snackBar.open("Panier entièrement vidé.", "Ok", { duration: 3000 });
+  }
+
+  // K.2: Implementation fn removeFromCart(item: CartItem)
+  removeFromCart(item: CartItem): void {
+    // Plusieurs façons de faire...
+    // Ici on filtre tout le reste du panier dans un constante
+    const filteredItems = this.cart.value.items.filter(
+      (_item) => _item.id !== item.id
+    );
+    // On alloue au panier cette valeur calculée
+    this.cart.next({ items: filteredItems });
+
+    this._snackBar.open("Produit supprimé.", "Ok", { duration: 3000 });
   }
 }
