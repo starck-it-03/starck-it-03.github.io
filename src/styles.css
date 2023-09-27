@@ -1,20 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-
 /* Needed imports iot to use templates from tailwind*/
 /* npm install -D tailwindcss postcss autoprefixer  */
 /* npx tailwindcss init                             */
 /* https://tailwindcss.com/docs/guides/angular*/
 
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
-*/
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities;  */
 
 /* https://stackoverflow.com/questions/71384038/many-tailwind-css-classes-doesn%C2%B4t-work-on-my-angular-12-project */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 html,
 body {
