@@ -13,7 +13,12 @@
   <mat-drawer-content class="p-6">
     <!-- D.7  -->
     <!-- Ajout de l'event 'columsCountChange' (TBC) -->
-    <app-products-header (columnsCountChange)="onColumnsCountChange($event)">
+
+    <!-- O.3: Ajout de l'event 'sortChange' qui va lancer le onSortChange() du home.component.ts-->
+    <app-products-header
+      (columnsCountChange)="onColumnsCountChange($event)"
+      (sortChange)="onSortChange($event)"
+    >
     </app-products-header>
 
     <!-- D.2 -->
@@ -33,7 +38,7 @@
         <!-- G.8: -->
         <!-- [fullWidthMode]="cols === 1" applique propriété fullWidthMode uniquement si la valeur courrant de var 'cols' est égale à 1 -->
         <!-- H.7: Ajout de l'event sur button pour catcher la méthode d'emit créée à l'étape H-1 -->
-        <!-- N.11: Ajout du [product]='product'-->
+        <!-- N.11: Ajout du [product]='product' pour ... (TBD)-->
         <app-product-box
           [product]="product"
           (addToCart)="onAddToCart($event)"

@@ -17,12 +17,18 @@ export class ProductsHeaderComponent implements OnInit {
   // D.5
   // Déclaration de l'output 'columnsCountChange'(TBC)
   @Output() columnsCountChange = new EventEmitter<number>();
+
+  // O.1: Output nécessaire à la propagation de la nouvelle valeur de la var 'sort' vers autre composant
+  @Output() sortChange = new EventEmitter<string>();
+
   // A.3
   // Déclaration de la var pr le menu sorting et initialisation à 'desc'
   sort = "desc";
+  
   // B.3
   // Déclaration de la var pr le menu rows qty items et initialisation à 12
   itemsShowCount = 12;
+  
   // C.2
   // Déclaration de la var pr le menu column qty items et initialisation à 3
   colsNum = 3;
@@ -35,13 +41,18 @@ export class ProductsHeaderComponent implements OnInit {
   onSortUpdated(newSort: string): void {
     this.sort = newSort;
     console.log(newSort);
+
+    // O.2: Emission de la nouvelle valeur de var 'sort' (pr la catcher ult dans home.component.html)
+    this.sortChange.emit(this.sort);
   }
+
   // B.4
   // Déclaration de la fn pr changer la valeur de variable 'itemsShowCount'
   onItemsUpdated(count: number): void {
     this.itemsShowCount = count;
     console.log(count);
   }
+  
   // D.6
   // Déclaration de la fn 'onColumnsUpdated' pr changer la valeur de l'output 'columnsCountChange'
   onColumnsUpdated(colsNum: number): void {

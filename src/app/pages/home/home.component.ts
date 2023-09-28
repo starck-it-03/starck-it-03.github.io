@@ -97,6 +97,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  // O.4: Nouvelle méthode lancée par l'event 'sortChange'
+  onSortChange(newSort: string): void {
+    this.sort =newSort;
+    this.getProducts();
+  }
+
   // N.14: Fn pr détruire la subscription ouverte et ainsi ne pas avoir de 'memory leaks'
   ngOnDestroy(): void {
     if (this.productsSubscription) {
