@@ -1,6 +1,12 @@
 // E.1
 // Déclaration d'un nouveau component (pour les filtres)
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { Subscription } from "rxjs";
 import { StoreService } from "src/app/services/store.service";
 
@@ -24,7 +30,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   categories: Array<string> | undefined;
 
   // Q.6: Var nécessaire pour killer la subscription à la fin
-  categoriesSubscription: Subscription | undefined; 
+  categoriesSubscription: Subscription | undefined;
 
   // Q.2: Ajout include du storeService
   constructor(private storeService: StoreService) {}
@@ -38,12 +44,12 @@ export class FiltersComponent implements OnInit, OnDestroy {
   // Fn pr l'émission d'un event vers le parent via output
   onShowCategory(category: string): void {
     // F.3
-    // Logique à éxecuter lors de l'appel de la fn 'onShowCategory'
+    // Emission de la valeur de la var 'category'
     this.showCategory.emit(category);
     console.log("Print from filters.component.ts (before output): " + category);
   }
 
-  // Q.5: Appelle Fn call API définie dans storeService 
+  // Q.5: Appelle Fn call API définie dans storeService
   getCategories(): void {
     this.categoriesSubscription = this.storeService
       .getAllCategories()

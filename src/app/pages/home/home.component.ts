@@ -55,7 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   // N.8: Déclaration méthode getProducts
   getProducts(): void {
     this.productsSubscription = this.storeService
-      .getAllProducts(this.count, this.sort)
+    // R.2: Ajout d'un param supplémentaire 'category'   
+    .getAllProducts(this.count, this.sort, this.category)
       .subscribe((_products) => {
         this.products = _products;
       });
@@ -80,6 +81,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
     console.log("this.category (@home.component.ts): " + this.category);
+
+    //R.1: Ajout d'un reload getProducts()
+    this.getProducts();
   }
 
   // H.11: Nouvelle méthode 'onAddToCart(product: Product)'
