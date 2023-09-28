@@ -15,9 +15,11 @@
     <!-- Ajout de l'event 'columsCountChange' (TBC) -->
 
     <!-- O.3: Ajout de l'event 'sortChange' qui va lancer le onSortChange() du home.component.ts-->
+    <!-- P.3: Ajout de l'event 'itemsCountChange' qui va lancer le onItemsCountChange() du home.component.ts-->
     <app-products-header
       (columnsCountChange)="onColumnsCountChange($event)"
       (sortChange)="onSortChange($event)"
+      (itemsCountChange)="onItemsCountChange($event)"
     >
     </app-products-header>
 

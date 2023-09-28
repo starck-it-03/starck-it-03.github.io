@@ -99,7 +99,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // O.4: Nouvelle méthode lancée par l'event 'sortChange'
   onSortChange(newSort: string): void {
-    this.sort =newSort;
+    this.sort = newSort;
+    this.getProducts();
+  }
+
+  // P.4: Nouvelle méthode lancée par l'event 'itemsCountChange'
+  onItemsCountChange(newCount: string): void {
+    this.count = newCount;
+    console.log(this.count);
     this.getProducts();
   }
 
