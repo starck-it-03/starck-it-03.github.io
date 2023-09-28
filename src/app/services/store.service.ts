@@ -23,4 +23,12 @@ export class StoreService {
       // Attention: l'url doit être entre `` et non entre '' ou ""
     );
   }
+
+  // Q.1: Déclaratipn fn pr getAllCategories from API
+  getAllCategories(): Observable<Array<string>>{
+    return this.httpClient.get<Array<string>>(
+      `${STORE_BASE_URL}/products/categories`
+      // Attention: l'url doit être entre `` et non entre '' ou ""
+    );
+  }
 }
