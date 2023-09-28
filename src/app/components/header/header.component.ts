@@ -18,10 +18,12 @@ export class HeaderComponent {
 
   // I.3: getter et setter necessaires à la MàJ de la var privée _cart
   @Input()
+
+  //getter
   get cart(): Cart {
     return this._cart;
   }
-
+  //setter
   set cart(cart: Cart) {
     this._cart = cart;
     this.itemsQuantity = cart.items
@@ -32,7 +34,7 @@ export class HeaderComponent {
   }
 
   // I.13: Appelle du service CartService pr utiliser la méthode getTotal()
-  // Nb: private est nécessaire lorsque l'on utilise uniquement 
+  // Nb: private est nécessaire lorsque l'on utilise uniquement
   // au sein du fichier.ts et non dans fichier.html
   constructor(private cartService: CartService) {}
 
